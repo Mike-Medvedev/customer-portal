@@ -1,3 +1,5 @@
 node_modules
 .env_secret
 .env
+apyre-customer-refresh-key.pub
+apyre-customer-token-key.pub
