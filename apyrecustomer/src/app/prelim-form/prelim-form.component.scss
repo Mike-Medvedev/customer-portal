@@ -1,0 +1,392 @@
+.screen {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #deecfa;
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+
+    .timer {
+        position: absolute;
+        width: 250px;
+        top: 0em;
+        left: 0em;
+        margin: 1em;
+        border: 2px solid grey;
+        border-radius: 6px;
+        padding: 1em;
+    }
+
+    .container {
+        width: 70%;
+        height: max-content;
+        min-height: 100%;
+        background-color: #FFF;
+        display: flex;
+        flex-direction: column;
+        overflow: visible;
+
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            padding: 2em;
+            justify-content: center;
+            align-items: center;
+
+            .img-container {
+                width: 115px;
+                height: 118px;
+
+                img {
+                    object-fit: contain;
+                    width: 100%;
+                }
+            }
+
+
+
+            .inquiry {
+                color: var(--primaryColor, #A24399);
+                text-align: center;
+                font-family: Oswald;
+                font-size: 26px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+            }
+
+            .header-text {
+                color: var(--surface-900, #231F20);
+                text-align: center;
+                font-family: Raleway;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+        }
+
+        // :host ::ng-deep .p-steps  {
+        //     background-color: green;
+        // }
+
+        .form-container {
+
+            margin-top: 2em;
+
+            .form-group-header {
+                display: flex;
+                justify-content: space-between;
+                background-color: var(--s200, #F9F7FA);
+                color: var(--primaryColor, #A24399);
+                font-family: Raleway;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+                padding: 0.2em 1em;
+
+            }
+
+            .products {
+                padding: 0px 18px;
+                font-family: Raleway;
+
+                .product {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5em;
+                    width: 45%;
+
+                    img {
+                        object-fit: contain;
+                        width: 75px;
+                        height: 75px;
+                    }
+                }
+            }
+
+            .grid {
+                margin: 0 0 1em 0;
+                padding: 0 0.625em;
+
+                label {
+                    color: var(--surface-900, #231F20);
+                    font-family: Raleway;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                }
+
+                input,
+                select {
+                    margin-top: 0.5em;
+
+                }
+
+
+                .form-element {
+                    width: 100%;
+                    height: 36px;
+                    border-radius: 4px;
+                    border: 1px solid var(--Lara-Surface-surface-600, #757575);
+                    background: var(--Lara-Root-surface-ground, #EFF3F8);
+                    display: flex;
+                    align-items: center;
+                    color: var(--surface-900, #231F20);
+                    font-family: Raleway;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    padding-left: 0.65em;
+
+
+
+
+
+
+
+                    &::placeholder {
+                        color: var(--Lara-Surface-surface-600, #757575);
+                        font-family: Raleway;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: normal;
+                    }
+
+
+
+
+                }
+
+            }
+
+
+            .review-form-container {
+                border-radius: 6px;
+                border: 1px solid var(--Lara-Surface-surface-400, #BDBDBD);
+                background-color: var(--Lara-Surface-surface-50, #FAFAFA);
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                height: 860px;
+
+
+                .form-data-group-container {
+                    width: 50%;
+                    display: flex;
+                    height: min-content;
+                    padding: 0.7em;
+                    gap: 0.5em;
+
+                    .form-data-section {
+                        display: flex;
+                        flex-direction: column;
+
+                        .form-data-group-header {
+                            color: var(--apyreBlue, #0072BC);
+                            font-family: Raleway;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: normal;
+                            margin-bottom: 0.25em;
+                        }
+
+                        .form-control {
+                            color: var(--surface-900, #231F20);
+                            font-family: Raleway;
+                            font-size: 15px;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: normal;
+
+                            .form-control-value {
+                                color: var(--surface-900, #231F20);
+                                font-family: Raleway;
+                                font-size: 15px;
+                                font-style: normal;
+                                font-weight: 500;
+                                line-height: normal;
+                            }
+                        }
+                    }
+
+
+                }
+            }
+
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin: 0 1.125em;
+            padding-bottom: 1em;
+
+
+            .link-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: max-content;
+                height: max-content;
+                border: none;
+                border-radius: 6px;
+                padding: 9px 18px;
+                background-color: var(--primaryColor, #A24399);
+                color: var(--Lara-Button-buttonTextColor, #FFF);
+                font-family: Raleway;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 1.05em;
+                white-space: nowrap;
+
+                &.complete {
+                    background-color: green;
+                }
+
+                .button-contents {
+                    display: flex;
+
+                    i {
+                        padding: 0 7px;
+                    }
+                }
+            }
+
+            .back-button {
+                @extend .link-button;
+                color: var(--primaryColor, #A24399);
+                border: 1px solid var(--primaryColor, #A24399);
+                background: var(--back-button-bcg, #F9F7FA);
+            }
+
+            .submit-button {
+                @extend .link-button;
+                font-size: 24px;
+                font-weight: 700;
+                line-height: 17px;
+                padding: 18px 30px;
+
+            }
+
+        }
+
+    }
+}
+
+
+
+.toggle-container {
+    background-color: transparent;
+    width: fit-content;
+
+    #toggle {
+        display: flex;
+        margin-top: 0.28em;
+    }
+
+    .toggle-container label {
+        position: absolute;
+        top: -250px;
+        left: 0;
+        font-weight: bold;
+        height: 10px;
+    }
+
+
+    .select-button-2 {
+        border-radius: 0px 5px 5px 0px;
+        border: 1px solid var(--Lara-Surface-surface-600, #757575);
+        display: flex;
+        padding: 10.5px 17.5px;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+        background-color: transparent;
+        color: var(--Lara-Surface-surface-500, #9E9E9E);
+        font-family: Raleway;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 17px;
+
+        &.pressed {
+            color: #fff;
+            background-color: var(--Lara-Surface-surface-700, #616161);
+        }
+    }
+
+    .select-button-1 {
+        border-radius: 5px 0px 0px 5px;
+        border: 1px solid var(--Lara-Surface-surface-600, #757575);
+        display: flex;
+        padding: 10.5px 17.5px;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+        background-color: transparent;
+        color: var(--Lara-Surface-surface-500, #9E9E9E);
+        font-family: Raleway;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 17px;
+
+
+
+        /* 113.333% */
+        &.pressed {
+            color: #fff;
+            background-color: var(--Lara-Surface-surface-700, #616161);
+        }
+    }
+}
+
+
+.add-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 3em;
+    padding: 0 18px;
+
+    .add-button {
+        display: flex;
+        color: var(--Lara-Button-buttonTextColor, #FFF);
+        padding: 11px 18px 8px 18px;
+        align-items: flex-start;
+        border-radius: 6px;
+        background-color: var(--apyreBlue, #0072BC);
+        gap: 7px;
+        font-family: Raleway;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 17px;
+
+        i {
+            font-size: 20px;
+        }
+    }
+}
+
+
+:host ::ng-deep .green-color {
+    color: green;
+}
+
+:host ::ng-deep .custom-color .p-steps-current>a>.p-steps-number {
+    background-color: var(--blue-700);
+    color: white;
+}

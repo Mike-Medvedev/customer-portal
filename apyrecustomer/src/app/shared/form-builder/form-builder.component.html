@@ -1,0 +1,49 @@
+<div class="header">
+    <div>{{ formData.header }} <sup *ngIf="formData.hasIcon"><i class="fa-regular fa-circle-info"></i></sup></div>
+    <div class="copy-icon" *ngIf="formData.copyIcon">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+<div class="toggle-container">
+    <button class="select-button-1" [class.pressed]="At_need" (click)="toggle('atNeed')">At-need</button>
+    <button class="select-button-2" [class.pressed]="Pre_need" (click)="toggle('preNeed')">Pre-need</button>
+</div>
+
+<form [formGroup]="yourForm" (ngSubmit)="onSubmit()">
+    <div class="form-container">
+        <div class="grid">
+            <ng-container *ngFor="let field of formArray">
+                <div [class]="'col-' + field.config.columns">
+                    <label [for]=" field.key">{{ field.config.fieldName }}<br></label>
+
+                    <ng-container [ngSwitch]="field.config.fieldType">
+                        <div class="form-element">
+                            <input *ngSwitchCase="'text'" placeholder="field.config.placeholder" [id]="field.key"
+                                [formControl]="getFormControl(field.key)" style="width: 100%;" />
+
+
+                            <input *ngSwitchCase="'checkbox'" type="checkbox" [id]="field.key"
+                                [formControl]="getFormControl(field.key)" style="width: 100%;" class="checkbox">
+
+
+
+
+                            <select *ngSwitchCase="'select'" [id]="field.key" [formControl]="getFormControl(field.key)"
+                                style="width: 100%;">
+                                <option *ngFor="let option of field.config.options" [value]="option">{{ option }}
+                                </option>
+                            </select>
+                        </div>
+
+                    </ng-container>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+    <!-- <div class="submit-button">
+        <button type="submit">
+            Submit
+        </button>
+    </div> -->
+</form>

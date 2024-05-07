@@ -1,0 +1,89 @@
+<div class="screen">
+    <div class="container">
+        <div class="nav-bar">
+            <div class="left-nav">
+                <div class="image-container">
+                    <img src="../../assets/apyreLogo.png" alt="apyreLogo">
+                </div>
+                <div><i class="fa-regular fa-timeline"></i>Status</div>
+                <div><i class="fa-regular fa-file-circle-info"></i>Case Info</div>
+                <div><i class="fa-regular fa-book-user"></i>Obits</div>
+                <div><i class="fa-regular fa-bags-shopping"></i>Orders</div>
+                <div><i class="fa-regular fa-pallet-box"></i>Products</div>
+
+            </div>
+            <div class="right-nav">
+                <div class="profile-icon"><i class="fa-regular fa-circle-user"></i></div>
+                <div class="profile-name">Michael Medvedev</div>
+                <div class="select-form">
+                    <select id="category">
+                        <option value=""></option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div class="main">
+            <div class="main-content">
+                <div class="header">
+                    <div class="first-text">
+                        <div class="inquiry-header">Inquiry #12345</div>
+                        <div class="date">12/12/2024</div>
+                    </div>
+                    <div class="second-text">Enter the information below for swift processing by our Apyre cremation
+                        specialist. After submission, please call <app-phone-link [link]="'855-812-7973'">
+                        </app-phone-link> to verify, make payment, and finalize
+                        your arrangements.</div>
+                </div>
+                <div class="steps"> Steps 1 of 7 </div>
+                <div class="form">
+                    <form [formGroup]="form">
+                        <h2 class="form-header">Contact Person <sup><i class="fa-regular fa-circle-info"></i></sup>
+                        </h2>
+                        <div>
+                            <div>First Name<input type="text" formControlName="fname" placeholder="Enter first name">
+                            </div>
+
+                            <div>Last Name<input type="text" formControlName="lname" placeholder="Enter last name">
+                            </div>
+
+                            <div>Phone<input type="text" formControlName="phone" placeholder="Enter phone number"></div>
+
+                            <div>Email<input type="text" formControlName="email" placeholder="Enter email address">
+                            </div>
+
+                        </div>
+                        <div formGroupName="residence">
+                            <h2 class="form-header">Contact Person Residence
+                            </h2>
+                            <div>Street<input type="text" formControlName="street" placeholder="Enter street name">
+                            </div>
+
+                            <div>Apt #<input type="text" formControlName="apt" placeholder="Enter apt.">
+                            </div>
+
+                            <div>City<input type="text" formControlName="city" placeholder="Enter city"></div>
+
+                            <div>State<input type="text" formControlName="state" placeholder="Enter state"></div>
+
+                            <div>Zipcode<input type="text" formControlName="zipcode" placeholder="Enter zipcode">
+                            </div>
+                        </div>
+
+
+                        <div formGroupName="decendant">
+                            <h2>Location<sup><i class="fa-regular fa-circle-info"></i></sup></h2>
+
+                            <div>Address where decendent is currently located
+                                <input type="text" formContralName="address" placeholder="Enter the address">
+                            </div>
+                        </div>
+                        <div class="form-footer">
+                            <button class="button">Next<i class="pi pi-arrow-right"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

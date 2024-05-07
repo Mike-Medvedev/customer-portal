@@ -1,0 +1,188 @@
+@import "primeicons/primeicons.css";
+@import "assets/theme.css";
+
+
+* {
+    outline: none;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Oswald', sans-serif;
+    font-family: 'Railway', sans-serif;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+.p-button:focus {
+    box-shadow: none;
+    border-color: #616161;
+}
+
+.p-button.p-highlight {
+    background-color: #616161;
+    border-color: #616161;
+}
+
+
+
+.p-radiobutton .p-radiobutton-box {
+    border-radius: 5px;
+}
+
+.p-radiobutton .p-radiobutton-box.p-highlight {
+    background-color: var(--primary-color);
+    background-color: none;
+    border-color: transparent;
+}
+
+.p-radiobutton .p-radiobutton-box:hover {
+    border-color: var(--primary-color);
+}
+
+
+.p-radiobutton .p-radiobutton-box .p-radiobutton-icon {
+    background-image: url('./assets/check-solid.svg');
+    background-repeat: no-repeat;
+    width: 12px;
+    height: 12px;
+    transition-duration: 0.2s;
+    background-color: transparent;
+}
+
+.p-radiobutton .p-radiobutton-box:not(.p-disabled).p-focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: none;
+    border-color: none;
+}
+
+.p-radiobutton .p-radiobutton-box:not(.p-disabled).p-focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: none;
+    border-color: none;
+}
+
+.p-checkbox .p-checkbox-box {
+    border-radius: 6px;
+}
+
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: none;
+    border-color: var(--primary-color);
+}
+
+.p-checkbox .p-checkbox-box.p-highlight {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+}
+
+.p-checkbox .p-checkbox-box:hover {
+    border-color: var(--primary-color);
+}
+
+.p-menu.p-menu-overlay {
+    background: #ffffff;
+    border: 1px solid var(--surface-900);
+    border-radius: 6px;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.1);
+
+}
+
+.p-tooltip {
+    max-width: fit-content;
+}
+
+.p-tooltip .p-tooltip-text ul {
+    padding-left: 1em;
+}
+
+.p-selectbutton {
+    min-width: max-content;
+}
+
+.fa-solid.fa-circle-info {
+    color: #616161;
+}
+
+
+.p-steps .p-steps-item:before {
+    border-top: 2px solid #DEE2E6;
+}
+
+.p-steps .p-steps-item.p-highlight:before {
+    border-top: 2px solid var(--blue-700);
+}
+
+
+.p-steps-item.border.p-disabled:before {
+    border-top: 2px solid var(--blue-700);
+}
+
+.p-steps-item.border.p-disabled .p-steps-number {
+    background-color: var(--blue-700);
+    color: white;
+}
+
+
+
+.p-steps .p-steps-number {
+    background: white;
+    color: var(--blue-700);
+    border: 2px solid var(--blue-700);
+}
+
+.p-dropdown {
+    width: 100%;
+    height: 36px;
+    border-radius: 4px;
+    border: 1px solid var(--Lara-Surface-surface-600, #757575);
+    background: var(--Lara-Root-surface-ground, #EFF3F8);
+    display: flex;
+    align-items: center;
+    color: var(--surface-900, #231F20);
+    font-family: Raleway;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding-left: 0.65em;
+    margin-top: 0.5em;
+}
+
+.p-dropdown-label.p-inputtext.p-placeholder {
+    padding: 0;
+}
+
+.p-dialog {
+    width: 60% !important;
+}
+
+.p-dialog .p-dialog-content {
+    padding: 0;
+    border-radius: 6px;
+}
+
+.p-inputtext.p-component {
+    padding: 10.5px 2em;
+    border-radius: 6px;
+    border: 1px solid var(--surface-900);
+    gap: 7px;
+
+}

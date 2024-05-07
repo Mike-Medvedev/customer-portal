@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="form-container">
+        <form [formGroup]="form" class="form">
+            <label for="email">
+                Enter Email
+                <br>
+                <input type="email" id="email" formControlName="email">
+                <br>
+                <button type="submit" (click)="getMagicLink()">Get Magic Link</button>{{ form.get('email')?.valid }}
+            </label>
+        </form>
+
+    </div>
+    <p-selectButton [options]="stateOptions" [(ngModel)]="value" optionLabel="label" optionValue="value">
+    </p-selectButton>
+    <i class="fa-regular fa-clock" pTooltip="yp"></i>
+</div>

@@ -1,0 +1,1385 @@
+<div class="screen">
+    <div class="timer">
+        <app-token-timer [expirationTimeUnix]="tokenExpiration"></app-token-timer>
+    </div>
+    <div class="container">
+        <div class="header">
+            <div class="img-container">
+                <img src="../../assets/apyreLogoFull.png" alt="logo">
+            </div>
+            <div class="inquiry">
+                Inquiry #I000000128
+            </div>
+            <div class="header-text" *ngIf="activeIndex===0">
+                Fill out the form below for quick processing by our Apyre cremation specialist. It takes about 15
+                minutes to complete. After submission, call <app-phone-link [link]="'855-812-7973'"></app-phone-link> to
+                verify, make payment, and finalize
+                arrangements.
+            </div>
+        </div>
+        <p-steps [model]="items" [(activeIndex)]="activeIndex" [readonly]="true" styleClass="custom-color">
+        </p-steps>
+        <!-- FORM 1  - FORM 1 - FORM 1 - FORM 1 - FORM 1 - FORM 1 - FORM 1 - FORM 1 - FORM 1 - FORM 1 - FORM 1 - FORM 1-->
+        <form [formGroup]="form">
+            <ng-container *ngIf="activeIndex === 0">
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>CONTACT PERSON
+                            <i class=" fa-solid fa-circle-info" pTooltip="The primary individual who initiated the case. Typically, this is the customer 
+                            or representative responsible for the interaction."></i>
+                        </div>
+                        <div class="copy-icon">
+                            <p-confirmDialog #cd>
+                                <ng-template pTemplate="headless" let-message>
+                                    <div
+                                        class="flex flex-column align-items-center surface-overlay border-round text-900">
+                                        <div class="w-full flex justify-content-between align-items-center p-3"
+                                            style="border-top-left-radius: 6px; border-top-right-radius: 6px; background-color: #DADEE3;">
+                                            <div class="font-bold text-2xl ">{{ message.header
+                                                }}</div>
+                                            <i class="pi pi-times-circle text-2xl text-600 cursor-pointer"
+                                                (click)="cd.reject()"></i>
+                                        </div>
+                                        <div class="p-3 pb-2">{{ message.message }}</div>
+                                        <div class="flex justify-content-end gap-2 p-2 w-full">
+                                            <button style="background-color: #757575;" pButton label="No"
+                                                (click)="cd.reject()" icon="pi pi-times"></button>
+                                            <button style="background-color: var(--primary-color);" pButton label="Yes"
+                                                (click)="cd.accept()" icon="pi pi-check"></button>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </p-confirmDialog>
+                            <p-menu #menu [model]="copyMenu" [popup]="true"></p-menu>
+                            <i class="fa-solid fa-copy cursor-pointer" (click)="menu.toggle($event)"></i>
+                        </div>
+                    </div>
+                    <div class="grid" formGroupName="contactPerson">
+
+                        <div class="col-6">
+                            <label for="fname">First Name</label>
+                            <input class="form-element" id="fname" type="text" formControlName="firstName"
+                                placeholder="Enter first name">
+                        </div>
+                        <div class="col-6">
+                            <label for="lname">Last Name</label>
+                            <input type="text" class="form-element" formControlName="lastName"
+                                placeholder="Enter last name">
+                        </div>
+
+                        <div class="col-6">
+                            <label for="phone">Phone</label>
+                            <input class="form-element" id="phone" type="text" formControlName="phone"
+                                placeholder="Enter phone number">
+                        </div>
+                        <div class="col-6">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-element" formControlName="email"
+                                placeholder="Enter email address">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>CONTACT PERSON RESIDENCE</div>
+                    </div>
+                    <div class="grid" formGroupName="contactResidence">
+
+                        <div class="col-9">
+                            <label for="street">Street</label>
+                            <input class="form-element" id="street" type="text" formControlName="street"
+                                placeholder="Enter street name">
+                        </div>
+                        <div class="col-3">
+                            <label for="apt">Apt #</label>
+                            <input type="text" class="form-element" formControlName="apt" placeholder="Enter apt.">
+                        </div>
+
+                        <div class="col-8">
+                            <label for="city">City</label>
+                            <input class="form-element" id="city" type="text" formControlName="city"
+                                placeholder="Enter city ">
+                        </div>
+                        <div class="col-2">
+                            <label for="state">State</label>
+                            <input type="text" class="form-element" formControlName="state" placeholder="Enter state">
+                        </div>
+                        <div class="col-2">
+                            <label for="zipcode">Zipcode</label>
+                            <input type="text" class="form-element" formControlName="zipcode"
+                                placeholder="Enter zipcode">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>SERVICE LOCATION
+                            <i class=" fa-solid fa-circle-info" pTooltip="The specific address where the decedent is currently located. This crucial 
+                                    information ensures our team can efficiently coordinate and select the 
+                                    nearest pickup location for handling the case promptly."></i>
+                        </div>
+
+                    </div>
+                    <div class="grid" formGroupName="service">
+
+                        <div class="col-6">
+                            <label for="address">Address where decedent is currently located</label>
+                            <input class="form-element" id="address" type="text" formControlName="address"
+                                placeholder="Enter the address">
+                        </div>
+                        <div class="col-2 flex align-items-end">
+                            <input type="text" class="form-element" formControlName="apt" placeholder="Unit #">
+                        </div>
+                        <div class=" col-3 flex gap-1 mt-4">
+                            <p-checkbox formControlName="residence" [binary]="true" inputId="binary"></p-checkbox>
+                            <label class="flex align-items-center" for="binary">Residence</label>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>SERVICE TYPE <i class="fa-solid fa-circle-info" [pTooltip]="tooltipContent"></i>
+                        </div>
+                    </div>
+                    <ng-template #tooltipContent>
+                        <ul>
+                            <li>"Pre-Need": Plan ahead for future arrangements.</li>
+                            <li>"At Need": Immediate support for recent passing.</li>
+                        </ul>
+                    </ng-template>
+                    <div class="grid" formGroupName="service">
+                        <div class="col-3 flex align-self-end" style="height: min-content">
+                            <p-selectButton [options]="stateOptions" formControlName="type" optionLabel="label"
+                                optionValue="value" [allowEmpty]="false">
+                            </p-selectButton>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <!-- FORM 1  - FORM 1 - FORM 1 - FORM 1 - FORM 1 - FORM 1 - FORM 1 - FORM 1 - FORM 1 - FORM 1 - FORM 1 - FORM 1-->
+            <ng-container *ngIf="activeIndex === 1">
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>DECEDENT INFORMATION
+                            <i class="fa-solid fa-circle-info" pTooltip="The individual who has passed away and is the subject of the current case or
+                           inquiry."></i>
+                        </div>
+                    </div>
+                    <div class="grid" formGroupName="decedent">
+
+                        <div class="col-6">
+                            <label for="fname">First Name</label>
+                            <input class="form-element" id="fname" type="text" formControlName="firstName"
+                                placeholder="Enter first name">
+                        </div>
+                        <div class="col-6">
+                            <label for="mname">Middle Name</label>
+                            <input type="text" class="form-element" formControlName="middleName"
+                                placeholder="Enter middle name">
+                        </div>
+
+                        <div class="col-5">
+                            <label for="maidenname">Maiden Name</label>
+                            <input class="form-element" id="maidenname" type="text" formControlName="maidenName"
+                                placeholder="Enter maiden name">
+                        </div>
+                        <div class="col-6 flex-1" style="min-width: 75%;">
+                            <label for="lname">Last Name</label>
+                            <input type="text" class="form-element" formControlName="lastName"
+                                placeholder="Enter last name">
+                        </div>
+                        <div class="col-1 min-w-max">
+                            <label for="suffix">Suffix</label>
+                            <p-dropdown formControlName="suffix" [options]="selectOptions.suffix" optionLabel="name"
+                                inputId="suffix">
+                            </p-dropdown>
+
+                        </div>
+                        <div class="col-4">
+                            <label for="sex">Sex</label>
+                            <p-dropdown formControlName="sex" [options]="selectOptions.sex" optionLabel="name"
+                                inputId="sex">
+                            </p-dropdown>
+                        </div>
+                        <div class="col-4">
+                            <label for="ssn">Social Security #</label>
+                            <input type="text" class="form-element" formControlName="ss"
+                                placeholder="Enter Decendent SSN">
+                        </div>
+                        <div class="col-4">
+                            <label for="domestic">Domestic Status</label>
+                            <p-dropdown formControlName="domesticStatus" [options]="selectOptions.domestic"
+                                optionLabel="name" inputId="domestic">
+                            </p-dropdown>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>DECENDENT RESIDENCE</div>
+                        <div class="copy-icon">
+                            <p-menu #menu [model]="copyMenu2" [popup]="true"></p-menu>
+                            <i class="fa-solid fa-copy cursor-pointer" (click)="menu.toggle($event)"></i>
+                        </div>
+                    </div>
+                    <div class="grid" formGroupName="decedentResidence">
+
+                        <div class="col-6">
+                            <label for="country">Country</label>
+                            <input class="form-element" id="street" type="text" formControlName="country"
+                                placeholder="Enter country name">
+                        </div>
+                        <div class="col-6">
+                            <label for="county">County</label>
+                            <input type="text" class="form-element" formControlName="county" placeholder="Enter county">
+                        </div>
+
+                        <div class="col-8">
+                            <label for="street">Street</label>
+                            <input class="form-element" id="street" type="text" formControlName="street"
+                                placeholder="Enter street name">
+                        </div>
+                        <div class="col-2">
+                            <label for="state">State</label>
+                            <input type="text" class="form-element" formControlName="state" placeholder="Enter state">
+                        </div>
+                        <div class="col-2">
+                            <label for="zipcode">Zipcode</label>
+                            <input type="text" class="form-element" formControlName="zipcode"
+                                placeholder="Enter zipcode">
+                        </div>
+                        <div class="col-4">
+                            <label for="citylimits">Inside City Limits? <i class="fa-solid fa-circle-info"
+                                    pTooltip="It means within the official boundaries of a city. It helps us understand the 
+                                        area where the deceased lived for logistical and regulatory purposes."></i></label>
+                            <p-dropdown formControlName="cityLimits" [options]="selectOptions.cityLimit"
+                                optionLabel="name" inputId="cityLimits">
+                            </p-dropdown>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>DEMOGRAPHICS</div>
+                    </div>
+                    <div class="grid" formGroupName="demographics">
+
+                        <div class="col-6">
+                            <label for="race">Race</label>
+                            <p-dropdown formControlName="race" [options]="selectOptions.race" optionLabel="name"
+                                inputId="race">
+                            </p-dropdown>
+                        </div>
+                        <div class="col-6"></div>
+                        <div class="col-6">
+                            <label for="origin">Hispanic Origin</label>
+                            <p-dropdown formControlName="origin" [options]="selectOptions.origin" optionLabel="name"
+                                inputId="origin">
+                            </p-dropdown>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>SURVIVING SPOUSE/PARTNER <i class="fa-solid fa-circle-info" pTooltip="It refers to the legally recognized husband, wife, or significant other 
+                            of the deceased individual."></i> </div>
+                    </div>
+                    <div class="grid" formGroupName="survivingSpouse">
+
+                        <div class="col-6">
+                            <label for="fname">First Name</label>
+                            <input class="form-element" id="fname" type="text" formControlName="firstName"
+                                placeholder="Enter first name">
+                        </div>
+                        <div class="col-6">
+                            <label for="mname">Middle Name</label>
+                            <input type="text" class="form-element" formControlName="middleName"
+                                placeholder="Enter middle name">
+                        </div>
+
+                        <div class="col-5">
+                            <label for="maidenname">Maiden Name</label>
+                            <input class="form-element" id="maidenname" type="text" formControlName="maidenName"
+                                placeholder="Enter maiden name">
+                        </div>
+                        <div class="col-6 flex-1">
+                            <label for="lname">Last Name</label>
+                            <input type="text" class="form-element" formControlName="lastName"
+                                placeholder="Enter last name">
+                        </div>
+                        <div class="col-1 min-w-max">
+                            <label for="suffix">Suffix</label>
+                            <p-dropdown formControlName="suffix" [options]="selectOptions.suffix" optionLabel="name"
+                                inputId="suffix">
+                            </p-dropdown>
+                        </div>
+
+                    </div>
+                </div>
+            </ng-container>
+            <!-- FORM 3 - FORM 3 - FORM 3 - FORM 3 - FORM3 - FORM 3 - FORM 3 - -->
+            <ng-container *ngIf="activeIndex === 2">
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>DECEDENT PLACE/DATE OF DEATH</div>
+                    </div>
+                    <div class="grid" formGroupName="decedentDeath">
+
+                        <div class="col-6">
+                            <label for="county">County</label>
+                            <input class="form-element" id="county" type="text" formControlName="countyOfDeath"
+                                placeholder="Enter county">
+                        </div>
+                        <div class="col-6">
+                            <label for="municipality">Municipality</label>
+                            <input type="text" class="form-element" formControlName="municipalityOfDeath"
+                                placeholder="Enter municipality">
+                        </div>
+                        <div class="col-3">
+                            <label for="state">State</label>
+                            <input type="text" class="form-element" formControlName="stateOfDeath"
+                                placeholder="Enter state">
+                        </div>
+                        <div class="col-3">
+                            <label for="dod">Date of Death</label>
+                            <input class="form-element" id="dod" type="text" formControlName="dateOfDeath"
+                                placeholder="Enter date">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>DECEDENT PLACE/DATE OF BIRTH</div>
+                    </div>
+                    <div class="grid" formGroupName="decedentBirth">
+
+                        <div class="col-6">
+                            <label for="country">Country</label>
+                            <input class="form-element" id="street" type="text" formControlName="countryOfBirth"
+                                placeholder="Enter country name">
+                        </div>
+                        <div class="col-6">
+                            <label for="city">City</label>
+                            <input type="text" class="form-element" formControlName="cityOfBirth"
+                                placeholder="Enter city">
+                        </div>
+                        <div class="col-2">
+                            <label for="state">State</label>
+                            <input type="text" class="form-element" formControlName="stateOfBirth"
+                                placeholder="Enter state">
+                        </div>
+                        <div class="col-3">
+                            <label for="dob">Date of Birth</label>
+                            <input class="form-element" id="dob" type="text" formControlName="dateOfBirth"
+                                placeholder="Enter date">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>DECENDENT FATHER</div>
+                    </div>
+                    <div class="grid" formGroupName="decedentFather">
+
+                        <div class="col-6">
+                            <label for="fname">First Name</label>
+                            <input class="form-element" id="fname" type="text" formControlName="firstName"
+                                placeholder="Enter first name">
+                        </div>
+                        <div class="col-6">
+                            <label for="mname">Middle Name</label>
+                            <input type="text" class="form-element" formControlName="middleName"
+                                placeholder="Enter middle name">
+                        </div>
+                        <div class="col-11 flex-1" style="min-width: 75%;">
+                            <label for="lname">Last Name</label>
+                            <input type="text" class="form-element" formControlName="lastName"
+                                placeholder="Enter last name">
+                        </div>
+                        <div class="col-1 min-w-max">
+                            <label for="suffix">Suffix</label>
+                            <p-dropdown formControlName="suffix" [options]="selectOptions.suffix" optionLabel="name"
+                                inputId="suffix">
+                            </p-dropdown>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>DECEDENT MOTHER</div>
+                    </div>
+                    <div class="grid" formGroupName="decedentMother">
+
+                        <div class="col-6">
+                            <label for="fname">First Name</label>
+                            <input class="form-element" id="fname" type="text" formControlName="firstName"
+                                placeholder="Enter first name">
+                        </div>
+                        <div class="col-6">
+                            <label for="mname">Middle Name</label>
+                            <input type="text" class="form-element" formControlName="middleName"
+                                placeholder="Enter middle name">
+                        </div>
+
+                        <div class="col-5">
+                            <label for="maidenname">Maiden Name</label>
+                            <input class="form-element" id="maidenname" type="text" formControlName="maidenName"
+                                placeholder="Enter maiden name">
+                        </div>
+                        <div class="col-6 flex-1">
+                            <label for="lname">Last Name</label>
+                            <input type="text" class="form-element" formControlName="lastName"
+                                placeholder="Enter last name">
+                        </div>
+                        <div class="col-1 min-w-max">
+                            <label for="suffix">Suffix</label>
+                            <p-dropdown formControlName="suffix" [options]="selectOptions.suffix" optionLabel="name"
+                                inputId="suffix">
+                            </p-dropdown>
+                        </div>
+
+                    </div>
+                </div>
+            </ng-container>
+            <!-- FORM -4 FORM - 4 FORM - 4 FORM - 4 FORM - 4 FORM - 4 F- FORM - 4 FORM - 4 FORM - 4  -->
+            <ng-container *ngIf="activeIndex === 3">
+                <div class="form-container">
+                    <div class="form-group-header justify-content-start">
+                        <div class="w-full">EDUCATION INFORMATION</div>
+                        <div class="w-full">OCCUPATION</div>
+                    </div>
+                    <div class="grid">
+                        <ng-container formGroupName="education">
+                            <div class="col-6">
+                                <p-dropdown formControlName="education" [options]="selectOptions.education"
+                                    optionLabel="name" placeholder="Select">
+                                </p-dropdown>
+                            </div>
+                        </ng-container>
+                        <ng-container formGroupName="occupation">
+                            <div class="col-6">
+                                <input class="form-element" id="occupation" type="text" formControlName="occupation"
+                                    placeholder="Enter occupation">
+                            </div>
+                            <div class="col-6">
+                                <label for="industry">Industry</label>
+                                <input type="text" class="form-element" formControlName="industry"
+                                    placeholder="Enter industry">
+                            </div>
+
+                            <div class="col-6">
+                                <label for="employername">Employer Name</label>
+                                <input class="form-element" id="employername" type="text" formControlName="name"
+                                    placeholder="Enter employer name">
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>WORK ADDRESS</div>
+                    </div>
+                    <div class="grid" formGroupName="workAddress">
+
+                        <div class="col-9">
+                            <label for="street">Street</label>
+                            <input class="form-element" id="street" type="text" formControlName="street"
+                                placeholder="Enter street name">
+                        </div>
+                        <div class="col-3">
+                            <label for="apt">Apt #</label>
+                            <input type="text" class="form-element" formControlName="apt" placeholder="Enter apt.">
+                        </div>
+
+                        <div class="col-8">
+                            <label for="city">City</label>
+                            <input class="form-element" id="city" type="text" formControlName="city"
+                                placeholder="Enter city ">
+                        </div>
+                        <div class="col-2">
+                            <label for="state">State</label>
+                            <input type="text" class="form-element" formControlName="state" placeholder="Enter state">
+                        </div>
+                        <div class="col-2">
+                            <label for="zipcode">Zipcode</label>
+                            <input type="text" class="form-element" formControlName="zipcode"
+                                placeholder="Enter zipcode">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>ARMED FORCES INFORMATION</div>
+                    </div>
+                    <div class="grid" formGroupName="armedForces">
+
+                        <div class="col-4 flex-column">
+                            <div class="mb-1">Armed Forces?</div>
+                            <div class="flex align-items-center gap-3">
+                                <div *ngFor="let option of checkBoxOptions">
+                                    <p-radioButton [inputId]="'armedForces_' + option.key" [value]="option"
+                                        formControlName="armedForces"></p-radioButton>
+                                    <label [for]="'armedForces_' + option.key" class="ml-2">{{ option.name }}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 flex-column">
+                            <div class="mb-1">Died on Active Duty?</div>
+                            <div class="flex align-items-center gap-3">
+                                <div *ngFor="let option of checkBoxOptions">
+                                    <p-radioButton [inputId]="option.key" [value]="option"
+                                        formControlName="diedOnActiveDuty">
+                                    </p-radioButton>
+                                    <label [for]="option.key" class="ml-2">{{ option.name }}</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <label for="nameofwar">Name of War</label>
+                            <input type="text" class="form-element" formControlName="nameOfWar"
+                                placeholder="Enter name of war">
+                        </div>
+
+                        <div class="col-3">
+                            <label for="warservicestart">War Service Start</label>
+                            <input class="form-element" id="warservicestart" type="text"
+                                formControlName="warServiceFrom" placeholder="Enter date">
+                        </div>
+                        <div class="col-3">
+                            <label for="warserviceend">Last Name</label>
+                            <input type="text" class="form-element" formControlName="warServiceTo"
+                                placeholder="Enter date">
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>DEATH CERTIFICATE
+                        </div>
+                    </div>
+                    <div class="grid flex-auto" formGroupName="armedForces">
+                        <div class="col-3 min-w-max">
+                            <label class="mb-2 max-w-full" for="death-cert">How Many Death Certificates Would You
+                                Like
+                                To
+                                Order?</label>
+                            <div class="col-7 p-0">
+                                <input type="text" id="death-cert" class="form-element"
+                                    formControlName="deathCertificate" placeholder="Enter the number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <!-- FORM - 5 - FORM - 5 - FORM - 5 - FORM - 5- FORM - 5 - FORM - 5  -->
+            <ng-container *ngIf="activeIndex === 4">
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>BILLING INFO <i class="fa-solid fa-circle-info"
+                                pTooltip="This data is crucial for processing payments and ensuring accurate invoicing for our services."></i>
+                        </div>
+                        <div class="copy-icon">
+                            <i class="fa-solid fa-copy cursor-pointer" (click)="copyFormData('billing')"></i>
+                        </div>
+                    </div>
+                    <div class="grid" formGroupName="billing">
+
+                        <div class="col-6">
+                            <label for="fname">First Name</label>
+                            <input class="form-element" id="fname" type="text" formControlName="firstName"
+                                placeholder="Enter first name">
+                        </div>
+                        <div class="col-6">
+                            <label for="lname">Last Name</label>
+                            <input type="text" class="form-element" formControlName="lastName"
+                                placeholder="Enter last name">
+                        </div>
+                        <div class="col-9">
+                            <label for="street">Street</label>
+                            <input class="form-element" id="street" type="text" formControlName="street"
+                                placeholder="Enter street name">
+                        </div>
+                        <div class="col-3">
+                            <label for="apt">Apt #</label>
+                            <input type="text" class="form-element" formControlName="apt" placeholder="Enter apt.">
+                        </div>
+
+                        <div class="col-8">
+                            <label for="city">City</label>
+                            <input class="form-element" id="city" type="text" formControlName="city"
+                                placeholder="Enter city ">
+                        </div>
+                        <div class="col-2">
+                            <label for="state">State</label>
+                            <input type="text" class="form-element" formControlName="state" placeholder="Enter state">
+                        </div>
+                        <div class="col-2">
+                            <label for="zipcode">Zipcode</label>
+                            <input type="text" class="form-element" formControlName="zipcode"
+                                placeholder="Enter zipcode">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>DELIVERY <i pTooltip="Select 'Ship' if you prefer to have the items delivered to your specified address. 
+                            Choose 'Pickup' if you plan to collect the items from Apyre location yourself."
+                                class="fa-solid fa-circle-info"></i> </div>
+                    </div>
+                    <div class="grid" formGroupName="deliveryType">
+
+
+
+                        <div class="col-4 flex-column">
+                            <div class="flex align-items-center gap-1">
+                                <p-radioButton inputId="pickup" value="pickup" formControlName="type"></p-radioButton>
+                                <label class="mr-1" for="pickup">Pickup</label>
+                                <p-radioButton inputId="shipping" value="ship" formControlName="type"></p-radioButton>
+                                <label for="shipping">Shipping</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-container">
+                    <div formArrayName="recipients">
+                        <ng-container *ngFor="let recipient of recipientsArray.controls; let i = index">
+                            <div class="form-container">
+                                <div class="form-group-header">
+                                    <div class="text-blue-700">RECIPIENT {{i + 1}}</div>
+                                    <div class="copy-icon">
+                                        <i class="fa-solid fa-copy cursor-pointer"
+                                            (click)="copyDynamicFormData('recipients', i)"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid" [formGroupName]="i">
+                                <div class="col-11">
+                                    <label for="fname">First Name</label>
+                                    <input class="form-element" id="fname" type="text" formControlName="firstName"
+                                        placeholder="Enter first name">
+                                </div>
+                                <div class="col-1">
+                                    <label for="mi">M.I.</label>
+                                    <input type="text" class="form-element" formControlName="middleName" placeholder="">
+                                </div>
+                                <div class="col-11 flex-1" style="min-width: 75%;">
+                                    <label for="lname">Last Name</label>
+                                    <input type="text" class="form-element" formControlName="lastName"
+                                        placeholder="Enter last name">
+                                </div>
+                                <div class="col-1 min-w-max">
+                                    <label for="suffix">Suffix</label>
+                                    <p-dropdown formControlName="suffix" [options]="selectOptions.suffix"
+                                        optionLabel="name" inputId="suffix">
+                                    </p-dropdown>
+                                </div>
+                                <div class="col-6">
+                                    <label for="phone">Phone</label>
+                                    <input class="form-element" id="phone" type="text" formControlName="phone"
+                                        placeholder="Enter phone number">
+                                </div>
+                                <div class="col-6">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-element" formControlName="email"
+                                        placeholder="Enter email address">
+                                </div>
+                                <div class="col-10">
+                                    <label for="street">Street</label>
+                                    <input class="form-element" id="street" type="text" formControlName="street"
+                                        placeholder="Enter street name">
+                                </div>
+                                <div class="col-2">
+                                    <label for="apt">Apt #</label>
+                                    <input type="text" class="form-element" formControlName="apt"
+                                        placeholder="Enter apt.">
+                                </div>
+
+                                <div class="col-8">
+                                    <label for="city">City</label>
+                                    <input class="form-element" id="city" type="text" formControlName="city"
+                                        placeholder="Enter city ">
+                                </div>
+                                <div class="col-2">
+                                    <label for="state">State</label>
+                                    <input type="text" class="form-element" formControlName="state"
+                                        placeholder="Enter state">
+                                </div>
+                                <div class="col-2">
+                                    <label for="zipcode">Zipcode</label>
+                                    <input type="text" class="form-element" formControlName="zipcode"
+                                        placeholder="Enter zipcode">
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="add-button-container">
+                        <button class="add-button" (click)="addFormArray('recipients')">
+                            <i class="pi pi-plus-circle"></i>
+                            <div>Add Shipping Recipient</div>
+                        </button>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="activeIndex === 5">
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>NEXT OF KIN <i class="fa-solid fa-circle-info" pTooltip="The 'Next of Kin' is the closest living relative or person legally authorized to make decisions on 
+                                    behalf of the deceased individual. This individual is typically contacted first in case of emergencies 
+                                    or for important matters related to the deceased."></i></div>
+                        <div class="copy-icon">
+                            <i class="fa-solid fa-copy cursor-pointer"></i>
+                        </div>
+                    </div>
+                    <div class="grid" formGroupName="nextOfKin">
+
+                        <div class="col-11">
+                            <label for="fname">First Name</label>
+                            <input class="form-element" id="fname" type="text" formControlName="firstName"
+                                placeholder="Enter first name">
+                        </div>
+                        <div class="col-1">
+                            <label for="mi">M.I.</label>
+                            <input type="text" class="form-element" formControlName="middleName" placeholder="">
+                        </div>
+                        <div class="col-11 flex-1" style="min-width: 75%;">
+                            <label for="lname">Last Name</label>
+                            <input type="text" class="form-element" formControlName="lastName"
+                                placeholder="Enter last name">
+                        </div>
+                        <div class="col-1">
+                            <label for="suffix">Suffix</label>
+                            <p-dropdown formControlName="suffix" [options]="selectOptions.suffix" optionLabel="name"
+                                inputId="suffix">
+                            </p-dropdown>
+                        </div>
+                        <div class="col-6">
+                            <label for="phone">Phone</label>
+                            <input class="form-element" id="phone" type="text" formControlName="phone"
+                                placeholder="Enter phone number">
+                        </div>
+                        <div class="col-6">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-element" formControlName="email"
+                                placeholder="Enter email address">
+                        </div>
+                        <div class="col-10">
+                            <label for="street">Street</label>
+                            <input class="form-element" id="street" type="text" formControlName="street"
+                                placeholder="Enter street name">
+                        </div>
+                        <div class="col-2">
+                            <label for="apt">Apt #</label>
+                            <input type="text" class="form-element" formControlName="apt" placeholder="Enter apt.">
+                        </div>
+
+                        <div class="col-8">
+                            <label for="city">City</label>
+                            <input class="form-element" id="city" type="text" formControlName="city"
+                                placeholder="Enter city ">
+                        </div>
+                        <div class="col-2">
+                            <label for="state">State</label>
+                            <input type="text" class="form-element" formControlName="state" placeholder="Enter state">
+                        </div>
+                        <div class="col-2">
+                            <label for="zipcode">Zipcode</label>
+                            <input type="text" class="form-element" formControlName="zipcode"
+                                placeholder="Enter zipcode">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <div formArrayName="additionalNextOfKin">
+                        <ng-container *ngFor="let nextOfKin of nextOfKinArray.controls; let i = index">
+                            <div class="form-container">
+                                <div class="form-group-header">
+                                    <div class="text-blue-700">NEXT OF KIN{{i + 1}}</div>
+                                    <div class="copy-icon">
+                                        <i class="fa-solid fa-circle-minus text-red-600 cursor-pointer"
+                                            (click)="deleteFormGroup('additionalNextOfKin', i)"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid" [formGroupName]="i">
+                                <div class="col-11">
+                                    <label for="fname">First Name</label>
+                                    <input class="form-element" id="fname" type="text" formControlName="firstName"
+                                        placeholder="Enter first name">
+                                </div>
+                                <div class="col-1">
+                                    <label for="mi">M.I.</label>
+                                    <input type="text" class="form-element" formControlName="middleName" placeholder="">
+                                </div>
+                                <div class="col-11 flex-1" style="min-width: 75%;">
+                                    <label for="lname">Last Name</label>
+                                    <input type="text" class="form-element" formControlName="lastName"
+                                        placeholder="Enter last name">
+                                </div>
+                                <div class="col-1">
+                                    <label for="suffix">Suffix</label>
+                                    <p-dropdown formControlName="suffix" [options]="selectOptions.suffix"
+                                        optionLabel="name" inputId="suffix">
+                                    </p-dropdown>
+                                </div>
+                                <div class="col-6">
+                                    <label for="phone">Phone</label>
+                                    <input class="form-element" id="phone" type="text" formControlName="phone"
+                                        placeholder="Enter phone number">
+                                </div>
+                                <div class="col-6">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-element" formControlName="email"
+                                        placeholder="Enter email address">
+                                </div>
+                                <div class="col-10">
+                                    <label for="street">Street</label>
+                                    <input class="form-element" id="street" type="text" formControlName="street"
+                                        placeholder="Enter street name">
+                                </div>
+                                <div class="col-2">
+                                    <label for="apt">Apt #</label>
+                                    <input type="text" class="form-element" formControlName="apt"
+                                        placeholder="Enter apt.">
+                                </div>
+
+                                <div class="col-8">
+                                    <label for="city">City</label>
+                                    <input class="form-element" id="city" type="text" formControlName="city"
+                                        placeholder="Enter city ">
+                                </div>
+                                <div class="col-2">
+                                    <label for="state">State</label>
+                                    <input type="text" class="form-element" formControlName="state"
+                                        placeholder="Enter state">
+                                </div>
+                                <div class="col-2">
+                                    <label for="zipcode">Zipcode</label>
+                                    <input type="text" class="form-element" formControlName="zipcode"
+                                        placeholder="Enter zipcode">
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="add-button-container">
+                        <button class="add-button" (click)="addFormArray('additionalNextOfKin')">
+                            <i class="pi pi-plus-circle"></i>
+                            <div>Add Additional Next of Kin</div>
+                        </button>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="activeIndex === 6">
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>REVIEW THE FORM</div>
+                        <div class="copy-icon">
+                            <i class="fa-solid fa-copy cursor-pointer"></i>
+                        </div>
+                    </div>
+                    <div class="review-form-container">
+                        <div class="form-data-group-container">
+                            <div>
+                                <i class="fa-solid fa-user text-600"></i>
+                            </div>
+                            <div class="form-data-section">
+                                <div class="form-data-group-header">
+                                    CONTACT PERSON
+                                </div>
+                                <div class="form-control">
+                                    Name:
+                                    <span class="form-control-value">{{getFormControlValue('contactPerson',
+                                        'firstName')}} {{getFormControlValue('contactPerson',
+                                        'lastName')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Phone:
+                                    <span class="form-control-value">{{getFormControlValue('contactPerson',
+                                        'phone')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Email:
+                                    <span class="form-control-value">{{getFormControlValue('contactPerson',
+                                        'email')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Address:
+                                    <span class="form-control-value">{{getAddress('contactResidence')}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-data-group-container">
+                            <div>
+                                <i class="fa-solid fa-magnifying-glass-location text-600"></i>
+                            </div>
+                            <div class="form-data-section">
+                                <div class="form-data-group-header">
+                                    SERVICE
+                                </div>
+                                <div class="form-control">
+                                    Location:
+                                    <span class="form-control-value">{{getFormControlValue('service',
+                                        'address')}} {{getFormControlValue('service',
+                                        'apt')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Service Type:
+                                    <span class="form-control-value">{{getFormControlValue('service',
+                                        'type')}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-data-group-container">
+                            <div>
+                                <i class="fa-solid fa-circle-info text-600"></i>
+                            </div>
+                            <div class="form-data-section">
+                                <div class="form-data-group-header">
+                                    DECEDENT INFO
+                                </div>
+                                <div class="form-control">
+                                    Name:
+                                    <span class="form-control-value">{{getFormControlValue('decedent',
+                                        'firstName')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Maiden Name:
+                                    <span class="form-control-value">{{getFormControlValue('decedent',
+                                        'maidenName')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Sex:
+                                    <span class="form-control-value">{{getFormControlValue('decedent',
+                                        'sex')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    SSN:
+                                    <span class="form-control-value">{{getFormControlValue('decedent',
+                                        'ss')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Address:
+                                    <span class="form-control-value">{{getFormControlValue('decedentResidence',
+                                        'street')}} {{getFormControlValue('decedentResidence',
+                                        'state')}} {{getFormControlValue('decedentResidence',
+                                        'zipcode')}} </span>
+                                </div>
+                                <div class="form-control">
+                                    County:
+                                    <span class="form-control-value">{{getFormControlValue('decedentResidence',
+                                        'county')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Country:
+                                    <span class="form-control-value">{{getFormControlValue('decedentResidence',
+                                        'country')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Inside City Limits:
+                                    <span class="form-control-value">{{getFormControlValue('decedentResidence',
+                                        'cityLimits')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Domestic Status:
+                                    <span class="form-control-value">{{getFormControlValue('decedent',
+                                        'domesticStatus')}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-data-group-container">
+                            <div>
+                                <i class="fa-solid fa-user-magnifying-glass text-600"></i>
+                            </div>
+                            <div class="form-data-section">
+                                <div class="form-data-group-header">
+                                    DEMOGRAPHICS
+                                </div>
+                                <div class="form-control">
+                                    Race:
+                                    <span class="form-control-value">{{getFormControlValue('demographics',
+                                        'race')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Hispanic Origin:
+                                    <span class="form-control-value">{{getFormControlValue('demographics',
+                                        'origin')}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-data-group-container">
+                            <div>
+                                <i class="fa-solid fa-briefcase text-600"></i>
+                            </div>
+                            <div class="form-data-section">
+                                <div class="form-data-group-header">
+                                    OCCUPATION INFO
+                                </div>
+                                <div class="form-control">
+                                    Occupation:
+                                    <span class="form-control-value">{{getFormControlValue('occupation',
+                                        'occupation')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Industy:
+                                    <span class="form-control-value">{{getFormControlValue('occupation',
+                                        'industry')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Employer Name:
+                                    <span class="form-control-value">{{getFormControlValue('occupation',
+                                        'name')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Work Address:
+                                    <span class="form-control-value">{{getAddress('workAddress')}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-data-group-container">
+                            <div>
+                                <i class="fa-solid fa-handshake text-600"></i>
+                            </div>
+                            <div class="form-data-section">
+                                <div class="form-data-group-header">
+                                    SURVIVING SPOUSE / PARNER
+                                </div>
+                                <div class="form-control">
+                                    Full Name:
+                                    <span class="form-control-value">{{getFormControlValue('survivingSpouse',
+                                        'firstName')}} {{getFormControlValue('survivingSpouse',
+                                        'lastName')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Maiden Name:
+                                    <span class="form-control-value">{{getFormControlValue('survivingSpouse',
+                                        'maidenName')}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-data-group-container">
+                            <div>
+                                <i class="fa-solid fa-person-military-rifle text-600"></i>
+                            </div>
+                            <div class="form-data-section">
+                                <div class="form-data-group-header">
+                                    ARMED FORCED INFO
+                                </div>
+                                <div class="form-control">
+                                    Armed Forces:
+                                    <span class="form-control-value">{{getFormControlValue('armedForces',
+                                        'armedForces')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Died on Active Duty:
+                                    <span class="form-control-value">{{getFormControlValue('armedForces',
+                                        'diedOnActiveDuty')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Name of War:
+                                    <span class="form-control-value">{{getFormControlValue('armedForces',
+                                        'nameOfWar')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Service:
+                                    <span class="form-control-value">{{getFormControlValue('armedForces',
+                                        'warServiceFrom')}} - {{getFormControlValue('armedForces',
+                                        'warServiceTo')}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-data-group-container">
+                            <div>
+                                <i class="fa-solid fa-tombstone text-600"></i>
+                            </div>
+                            <div class="form-data-section">
+                                <div class="form-data-group-header">
+                                    DECEDENT PLACE / DATE OF DEATH
+                                </div>
+                                <div class="form-control">
+                                    Place of Death:
+                                    <span class="form-control-value">{{getFormControlValue('decedentDeath',
+                                        'countyOfDeath')}} {{getFormControlValue('decedentDeath',
+                                        'municipalityOfDeath')}} {{getFormControlValue('decedentDeath',
+                                        'stateOfDeath')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Date of Death:
+                                    <span class="form-control-value">{{getFormControlValue('decedentDeath',
+                                        'dateOfDeath')}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-data-group-container">
+                            <div>
+                                <i class="fa-solid fa-cake-candles text-600"></i>
+                            </div>
+                            <div class="form-data-section">
+                                <div class="form-data-group-header">
+                                    DECEDENT PLACE / DATE OF BIRTH
+                                </div>
+                                <div class="form-control">
+                                    Place of Birth:
+                                    <span class="form-control-value">{{getFormControlValue('decedentBirth',
+                                        'cityOfBirth')}} {{getFormControlValue('decedentBirth',
+                                        'stateOfBirth')}} {{getFormControlValue('decedentBirth',
+                                        'countryOfBirth')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Date of Birth:
+                                    <span class="form-control-value">{{getFormControlValue('decedentBirth',
+                                        'dateOfBirth')}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-data-group-container">
+                            <div>
+                                <i class="fa-solid fa-family text-600"></i>
+                            </div>
+                            <div class="form-data-section">
+                                <div class="form-data-group-header">
+                                    PARENTAL INFO
+                                </div>
+                                <div class="form-control">
+                                    Mother's Name:
+                                    <span class="form-control-value">{{getFormControlValue('decedentMother',
+                                        'firstName')}} {{getFormControlValue('decedentMother',
+                                        'lastName')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Mother's Maiden Name:
+                                    <span class="form-control-value">{{getFormControlValue('decedentMother',
+                                        'maidenName')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Father's Name:
+                                    <span class="form-control-value">{{getFormControlValue('decedentFather',
+                                        'firstName')}} {{getFormControlValue('decedentFather',
+                                        'lastName')}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-data-group-container">
+                            <div>
+                                <i class="fa-solid fa-file-invoice-dollar text-600"></i>
+                            </div>
+                            <div class="form-data-section">
+                                <div class="form-data-group-header">
+                                    BILLING INFO
+                                </div>
+                                <div class="form-control">
+                                    Name:
+                                    <span class="form-control-value">{{getFormControlValue('billing',
+                                        'firstName')}} {{getFormControlValue('billing',
+                                        'lastName')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Phone:
+                                    <span class="form-control-value">{{getFormControlValue('contactPerson',
+                                        'phone')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Email:
+                                    <span class="form-control-value">{{getFormControlValue('contactPerson',
+                                        'email')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Address:
+                                    <span class="form-control-value">{{getAddress('contactResidence')}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-data-group-container">
+                            <div>
+                                <i class="fa-solid fa-person-carry-box text-600"></i>
+                            </div>
+                            <div class="form-data-section">
+                                <div class="form-data-group-header">
+                                    DELIVERY
+                                </div>
+                                <div class="form-control">
+                                    Type:
+                                    <span class="form-control-value">{{getFormControlValue('deliveryType',
+                                        'type')}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-data-group-container">
+                            <div>
+                                <i class="fa-solid fa-house-user text-600"></i>
+                            </div>
+                            <div class="form-data-section">
+                                <div class="form-data-group-header">
+                                    RECIPIENT 1
+                                </div>
+                                <div class=" form-control">
+                                    Relationship:
+                                    <span class="form-control-value">value</span>
+                                </div>
+                                <div class="form-control">
+                                    Name:
+                                    <span class="form-control-value">value</span>
+                                </div>
+                                <div class="form-control">
+                                    Phone:
+                                    <span class="form-control-value">value</span>
+                                </div>
+                                <div class="form-control">
+                                    Email:
+                                    <span class="form-control-value">value</span>
+                                </div>
+                                <div class="form-control">
+                                    Address:
+                                    <span class="form-control-value">value</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-data-group-container">
+                            <div>
+                                <i class="fa-solid fa-user-shield text-600"></i>
+                            </div>
+                            <div class="form-data-section">
+                                <div class="form-data-group-header">
+                                    NEXT OF KIN
+                                </div>
+                                <div class="form-control">
+                                    Relationship:
+                                    <span class="form-control-value">{{getFormControlValue('nextOfKin',
+                                        'relationship')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Name:
+                                    <span class="form-control-value">{{getFormControlValue('nextOfKin',
+                                        'firstName')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Phone:
+                                    <span class="form-control-value">{{getFormControlValue('nextOfKin',
+                                        'phone')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Email:
+                                    <span class="form-control-value">{{getFormControlValue('nextOfKin',
+                                        'email')}}</span>
+                                </div>
+                                <div class="form-control">
+                                    Address:
+                                    <span class="form-control-value">value</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-data-group-container">
+                            <div>
+                                <i class="fa-solid fa-user-shield text-600"></i>
+                            </div>
+                            <div class="form-data-section">
+                                <div class="form-data-group-header">
+                                    NEXT OF KIN 2
+                                </div>
+                                <div class="form-control">
+                                    Relationship:
+                                    <span class="form-control-value">value</span>
+                                </div>
+                                <div class="form-control">
+                                    Name:
+                                    <span class="form-control-value">value</span>
+                                </div>
+                                <div class="form-control">
+                                    Phone:
+                                    <span class="form-control-value">value</span>
+                                </div>
+                                <div class="form-control">
+                                    Email:
+                                    <span class="form-control-value">value</span>
+                                </div>
+                                <div class="form-control">
+                                    Address:
+                                    <span class="form-control-value">value</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+                <div class="form-container">
+                    <div class="form-group-header">
+                        <div>PRODUCTS<sup><i class="fa-solid fa-circle-info"></i></sup></div>
+                        <div class="copy-icon">
+                            <i class="fa-solid fa-copy cursor-pointer"></i>
+                        </div>
+                    </div>
+                    <div class="products">
+                        <ng-container *ngIf="cartSvc.getProducts() | async as products">
+                            <ng-container *ngFor="let product of products; let i = index;">
+                                <div class="product"
+                                    [ngStyle]="i > 0 ? {'border-top': '1px solid var(--surface-500)'} : {}">
+                                    <img src="../../assets/casket.png" alt="casket">
+                                    <div class="w-6 white-space-normal">{{product.product.title}}</div>
+                                    <div class="mr-6 ml-6">x{{ product.quantity }}</div>
+                                    <div> {{product.totalPrice | currency}}</div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+
+                    </div>
+                    <div class="add-button-container justify-content-start mt-2">
+                        <button class="add-button" (click)="showProducts()">
+                            <i class="pi pi-plus-circle"></i>
+                            <div>Add Products</div>
+                        </button>
+                    </div>
+                </div>
+            </ng-container>
+        </form>
+        <div class="footer">
+            <button *ngIf="activeIndex < 5" type=" submit" class="link-button" form="emailForm" (click)="nextPage()">
+                <div class="button-contents">
+                    <div>Next</div>
+                    <i class="pi pi-arrow-right"></i>
+                </div>
+            </button>
+            <button *ngIf="activeIndex === 5" type=" submit" class="link-button" form="emailForm"
+                (click)="reviewForm()">
+                <div class="button-contents">
+                    <div>Review The Form</div>
+                    <i class="pi pi-arrow-right"></i>
+                </div>
+            </button>
+            <button *ngIf="activeIndex === 6" type="submit" class="submit-button" form="form" (click)="submitForm()">
+                <div class="button-contents submit">
+                    <div>Submit</div>
+                    <i class="pi pi-arrow-right"></i>
+                </div>
+            </button>
+            <button *ngIf="activeIndex > 0" type=" submit" class="back-button" form="emailForm" (click)="prevPage()">
+                <div class="button-contents">
+                    <i class="pi pi-arrow-left"></i>
+                    <div>Back</div>
+                </div>
+            </button>
+        </div>
+    </div>
+
+</div>

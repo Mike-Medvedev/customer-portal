@@ -1,0 +1,32 @@
+{
+    "product-1": {
+        "title": "Emerson I Poplar Cremation Casket with Cherry Finish",
+        "sku": "SKU-123",
+        "price": "745.00",
+        "status": "avaliable",
+        "category": "caskets",
+        "desc": "Emerson II Composite Cloth Covered/ Ivory Crepe/ Swing Bar Handle. Medicaid Approved",
+        "material": "wood",
+        "color": "blue"
+    },
+    "product-2": {
+        "title": "South East Florida Gulfstream Premier Unattended Scattering",
+        "sku": "SKU-124",
+        "price": "295",
+        "status": "sold",
+        "category": "memorial items",
+        "desc": "Gulfstream unattended Premier Scattering of Cremated Remains. Our Captain will take your loved one out to the Gulf Stream, and will scatter the Cremated Remains into the Atlantic Ocean in the Gulf Stream. Upon completion we will provide a Certificate that identifies the date, time and latitude and longitude of the scattering. We will also complete the EPA report that identifies the exact coordinates of the scattering when the scattering is complete.",
+        "material": "wood",
+        "color": "blue"
+    },
+    "product-3": {
+        "title": "Rosewood Urn",
+        "sku": "SKU-1235",
+        "price": "745.00",
+        "status": "avaliable",
+        "category": "urns",
+        "desc": "Beautifully designed Rosewood is a hand-crafted, timeless urn with beautiful natural Rosewood lines. A perfect choice for both traditional and non-traditional tastes, but is also a perfect choice because of its timelessness and durability.",
+        "material": "stainless steel",
+        "color": "gold"
+    }
+}

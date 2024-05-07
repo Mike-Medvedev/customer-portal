@@ -1,0 +1,45 @@
+<div class="screen">
+    <p-toast
+        [breakpoints]="{'3000px': {width: '90%', right: '0', left: '100px'}, '920px': {width: '100%', right: '0', left: '0'}}">
+    </p-toast>
+    <div class="card">
+        <div class="card-contents">
+            <div class="card-header">
+                <div class="logo-container">
+                    <img src="../../assets/apyreLogoFull.png" alt="logo" class="logo">
+                </div>
+                <div class="text-box1">
+                    Welcome To Your Personalized Apyre® Portal!
+                </div>
+                <div class="text-box2">
+                    For added security, please verify your access by entering your registered email. Click the “Get the
+                    link” button below, and we'll promptly send you the access link via email.
+                </div>
+                <div class="form">
+                    <form id="emailForm" [formGroup]="emailForm" (ngSubmit)="getLink()">
+                        <div class="form-contents">
+
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" formControlName="email" placeholder="Enter your email">
+                        </div>
+                    </form>
+                </div>
+                <button type=" submit" class="link-button" form="emailForm" (click)="show()" [disabled]="email?.invalid"
+                    [ngClass]="{ 'disabled': email?.invalid}">
+                    <div class=" button-contents">
+                        <i class="pi pi-link"></i>
+                        <div>Get The Link</div>
+                    </div>
+                </button>
+            </div>
+            <div class="card-footer">
+                <footer class="footer">
+                    Forgot or Don't Have Your Email Credentials?
+                    <div class="contact">Contact us at <app-phone-link [link]="'855-812-7973'">
+                        </app-phone-link>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
