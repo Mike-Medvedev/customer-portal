@@ -40,3 +40,10 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# In-progress files
+src/app/login/
+src/app/menu/
+src/app/onboard-forms/
+src/app/reducers/
+src/app/state/
