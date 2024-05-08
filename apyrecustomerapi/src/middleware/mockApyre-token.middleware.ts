@@ -5,7 +5,6 @@ export const mockApyreTokenMiddleware = (req: any, res: Response, next: NextFunc
     if (req.path === '/get-magic-link' || '/verify-magic-link' || 'exchange-magic-link' || '/get-test-data') {
         return next();
     }
-    console.log('THIS IS COMING FROM MIDDLEWAREEEE!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     const token = req.headers['x-access-token'];
     const refresh = req.headers['refresh-token'];
     console.log('printing out acess token from middleware: ' + token)
